@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255,0,100,0.5);
+  position: relative;
+}
+
+h1 {
+  color: #ff2d55;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff2d55;
+  color: white;
+}
+
+#no {
+  background: #ddd;
+  position: absolute;
+}
+
+.hearts span {
+  position: fixed;
+  bottom: 0;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+#reply {
+  display: none;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="card">
+  <h1>💖 Will you be my Valentine? 💖</h1>
+  <br>
+  <button id="yes" onclick="yesClick()">YES ❤️</button>
+  <button id="no">NO 😜</button>
+
+  <div id="reply">
+    <p>Say something 💌</p>
+    <input type="text" placeholder="Type here..." style="padding:8px;width:80%;">
+  </div>
+</div>
+
+<div class="hearts"></div>
+
+<script>
+const noBtn = document.getElementById("no");
+
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.left = Math.random() * 250 + "px";
+  noBtn.style.top = Math.random() * 150 + "px";
+});
+
+function yesClick() {
+  document.getElementById("card").innerHTML = `
+    <h1>🥰 Thank Youuu! 💕</h1>
+    <p>You made my day 😍</p>
+    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" width="200">
+  `;
+}
+
+setInterval(() => {
+  const heart = document.createElement("span");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 10 + "px";
+  document.querySelector(".hearts").appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 300);
+</script>
+
+</body>
+</html>
